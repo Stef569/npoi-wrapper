@@ -96,12 +96,12 @@ namespace NPOI.Wrapper {
       return wrapper.HasMoreRows() && wrapper.CurrentRow <= maxRows;
     }
 
-    public void groupRows(int firstRow, int lastRow) {
-      wrapper.groupRows(firstRow-1, lastRow-1);
+    public void GroupRows(int firstRow, int lastRow) {
+      wrapper.GroupRows(firstRow-1, lastRow-1);
     }
 
-    public void groupCols(int firstCol, int lastCol) {
-      wrapper.groupCols(firstCol-1, lastCol-1);
+    public void GroupCols(int firstCol, int lastCol) {
+      wrapper.GroupCols(firstCol-1, lastCol-1);
     }
 
     /// <summary>
@@ -121,7 +121,7 @@ namespace NPOI.Wrapper {
     /// <param name="col">The column of the cell to write the value in. 1 based index.</param>
     /// <param name="value">The number value to write into this cell</param>
     public void WriteNumber(int col, double value) {
-      wrapper.writeNumber(col - 1, value);
+      wrapper.WriteNumber(col - 1, value);
     }
 
     /// <summary>
@@ -131,7 +131,7 @@ namespace NPOI.Wrapper {
     /// <param name="col">The column of the cell to write the value in. 1 based index.</param>
     /// <param name="value">The percentage value to write into this cell</param>
     public void WritePercentage(int col, double value) {
-      wrapper.writeNumber(col - 1, (double)value / 100);
+      wrapper.WriteNumber(col - 1, (double)value / 100);
       CellStyle cellStyle = new CellStyle();
       cellStyle.CustomFormatting = "0%";
       wrapper.ApplyStyle(col - 1, cellStyle);

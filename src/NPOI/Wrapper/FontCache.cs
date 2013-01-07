@@ -16,8 +16,8 @@ namespace NPOI.Wrapper {
       this.xlWorkbook = xlWorkbook;
     }
 
-    public IFont getFont(CellStyle cellStyle) {
-      return getFont(
+    public IFont GetFont(CellStyle cellStyle) {
+      return GetFont(
               cellStyle.Bold,
               cellStyle.Italic,
               cellStyle.Underlined,
@@ -27,7 +27,7 @@ namespace NPOI.Wrapper {
       );
     }
 
-    public IFont getFont(bool bold, bool italic, bool underline, Color fontColor, int fontSize, string fontName) {
+    public IFont GetFont(bool bold, bool italic, bool underline, Color fontColor, int fontSize, string fontName) {
       short npoiFontColor = Util.GetXLColor(xlWorkbook, fontColor);
       IFont xlFont = xlWorkbook.FindFont(CBold(bold), npoiFontColor, (short)(fontSize * 20), fontName, italic, false, 0, CUnderline(underline));
 

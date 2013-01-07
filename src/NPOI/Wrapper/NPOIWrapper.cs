@@ -83,14 +83,14 @@ namespace NPOI.Wrapper {
       }
     }
 
-    public void autoSizeColumn(int col) {
+    public void AutoSizeColumn(int col) {
       xlSheet.AutoSizeColumn(col);
     }
 
     /// <summary>
     /// Group a range of rows and hide them, 0 based
     /// </summary>
-    public void groupRows(int firstRow, int lastRow) {
+    public void GroupRows(int firstRow, int lastRow) {
       xlSheet.GroupRow(firstRow, lastRow);
       xlSheet.SetRowGroupCollapsed(firstRow, true);
     }
@@ -98,7 +98,7 @@ namespace NPOI.Wrapper {
     /// <summary>
     /// Group a range of columns and hide them, 0 based
     /// </summary>
-    public void groupCols(int firstCol, int lastCol) {
+    public void GroupCols(int firstCol, int lastCol) {
       xlSheet.GroupColumn(firstCol, lastCol);
       xlSheet.SetColumnGroupCollapsed(firstCol, true);
     }
@@ -150,7 +150,7 @@ namespace NPOI.Wrapper {
     /// </summary>
     /// <param name="col">The column of the cell to write the value in. 0 based index.</param>
     /// <param name="value">The text value to write into this cell</param>
-    public void writeNumber(int col, double value) {
+    public void WriteNumber(int col, double value) {
       ICell xlCell = xlRow.CreateCell(col);
       xlCell.SetCellValue(value);
     }
@@ -210,7 +210,7 @@ namespace NPOI.Wrapper {
     #region Cell Style
     public void ApplyStyle(int col, CellStyle cellStyle) {
       ICell xlCell = xlRow.GetCell(col, MissingCellPolicy.CREATE_NULL_AS_BLANK);
-      ICellStyle xlStyle = styleCache.getGeneralStyle();
+      ICellStyle xlStyle = styleCache.GetGeneralStyle();
 
       string customFormatting = cellStyle.CustomFormatting;
       if (customFormatting != null) {
@@ -226,7 +226,7 @@ namespace NPOI.Wrapper {
         }
       }
 
-      IFont font = fontCache.getFont(cellStyle);
+      IFont font = fontCache.GetFont(cellStyle);
 
       if (cellStyle.BackgroundColor != Color.Empty) {
         xlStyle.FillForegroundColor = Util.GetXLColor((HSSFWorkbook)xlWorkbook, cellStyle.BackgroundColor);
@@ -241,7 +241,7 @@ namespace NPOI.Wrapper {
       }
 
       xlStyle.SetFont(font);
-      styleCache.setCellStyle(xlCell, xlStyle);
+      styleCache.SetCellStyle(xlCell, xlStyle);
     }
     #endregion
   }

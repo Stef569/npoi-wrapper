@@ -19,9 +19,9 @@ namespace NPOI.Wrapper {
       this.defaultCellStyle = xlWorkbook.CreateCellStyle();
     }
 
-    public void setCellStyle(ICell cell, ICellStyle npoiCellStyle) {
+    public void SetCellStyle(ICell cell, ICellStyle npoiCellStyle) {
       CellStyleWrapper cellStyle = new CellStyleWrapper(npoiCellStyle);
-      string cellStyleKey = cellStyle.getKey();
+      string cellStyleKey = cellStyle.GetKey();
 
       if (cellStyles.ContainsKey(cellStyleKey)) {
         // reuse cached styles
@@ -30,27 +30,27 @@ namespace NPOI.Wrapper {
       } else {
         // If the style does not exist create a new one
         ICellStyle newCellStyle = xlWorkbook.CreateCellStyle();
-        copyCellStyle(xlWorkbook, npoiCellStyle, newCellStyle);
-        add(new CellStyleWrapper(newCellStyle));
+        CopyCellStyle(xlWorkbook, npoiCellStyle, newCellStyle);
+        Add(new CellStyleWrapper(newCellStyle));
         cell.CellStyle = newCellStyle;
       }
     }
 
-    private void add(CellStyleWrapper wrapper) {
-      string key = wrapper.getKey();
+    private void Add(CellStyleWrapper wrapper) {
+      string key = wrapper.GetKey();
       Debug.Print("Creating style " + xlWorkbook.NumCellStyles + " " + key);
       cellStyles.Add(key, wrapper);
     }
 
-    public ICellStyle getGeneralStyle() {
-      copyCellStyle(xlWorkbook, defaultCellStyle, cellStyle);
+    public ICellStyle GetGeneralStyle() {
+      CopyCellStyle(xlWorkbook, defaultCellStyle, cellStyle);
       return cellStyle;
     }
 
     /// <summary>
     /// Copy c1 into c2
     /// </summary>
-    public static void copyCellStyle(IWorkbook wb, ICellStyle c1, ICellStyle c2) {
+    public static void CopyCellStyle(IWorkbook wb, ICellStyle c1, ICellStyle c2) {
       c2.Alignment = c1.Alignment;
       c2.BorderBottom = c1.BorderBottom;
       c2.BorderLeft = c1.BorderLeft;
@@ -82,7 +82,7 @@ namespace NPOI.Wrapper {
       this.CellStyle = cellStyle;
     }
 
-    public bool equals(Object obj) {
+    public override bool Equals(Object obj) {
       if (obj == null) {
         return false;
       }
@@ -137,7 +137,7 @@ namespace NPOI.Wrapper {
       return hash;
     }
 
-    public string getKey() {
+    public string GetKey() {
       if (hash == null) {
         hash += CellStyle.Alignment.ToString();
         hash += CellStyle.BorderBottom.ToString();
