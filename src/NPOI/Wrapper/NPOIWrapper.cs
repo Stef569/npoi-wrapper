@@ -46,7 +46,8 @@ namespace NPOI.Wrapper {
         xlWorkbook = new HSSFWorkbook(xlsStream);
         xlSheet = xlWorkbook.GetSheetAt(0);
         styleCache = new CellStyleCache(xlWorkbook);
-      } finally {
+        fontCache = new FontCache((HSSFWorkbook)xlWorkbook);
+	  } finally {
         if (xlsStream != null) xlsStream.Close();
       }
     }
