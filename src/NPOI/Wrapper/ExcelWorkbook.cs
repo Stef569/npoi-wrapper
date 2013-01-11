@@ -34,7 +34,7 @@ namespace NPOI.Wrapper {
     /// 
     /// The workbook will contain 1 sheet named 'Sheet1'. The first row is selected.
     /// </summary>
-    /// <param name="excelFilePath">The path where the new xls file should be created.</param>
+    /// <param name="xlsFilePath">The path where the new excel file should be created.</param>
     /// <remarks></remarks>
     public void Create(String xlsFilePath) {
       this.XlsFilePath = xlsFilePath;
@@ -46,7 +46,7 @@ namespace NPOI.Wrapper {
     /// <summary>
     /// Open the Excel XLS file for reading. The first row is selected.
     /// </summary>
-    /// <param name="excelFilePath">Path to the file to open.</param>
+    /// <param name="xlsFilePath">Path to the excel file to open.</param>
     /// <remarks></remarks>
     public void Open(String xlsFilePath) {
       this.XlsFilePath = xlsFilePath;
@@ -55,14 +55,14 @@ namespace NPOI.Wrapper {
     }
 
     /// <summary>
-    /// Save this workbook to the location given in the create method.
+    /// Save this workbook to the XlsFilePath location given in the create or open method.
     /// </summary>
     public void Save() {
       SaveAs(XlsFilePath);
     }
 
     /// <summary>
-    /// Save this workbook to the given location.
+    /// Save this workbook to the given local path.
     /// </summary>
     public void SaveAs(String xlsFilePath) {
       wrapper.Save(new FileStream(xlsFilePath, FileMode.Create, FileAccess.Write));
@@ -222,8 +222,11 @@ namespace NPOI.Wrapper {
     }
 
     public string ReadText(int col, int row) {
+      int currentRow = CurrentRow;
       SelectRow(row);
-      return ReadText(col);
+      string text = ReadText(col);
+      SelectRow(currentRow);
+      return text;
     }
 
     public string ReadText(int col) {
